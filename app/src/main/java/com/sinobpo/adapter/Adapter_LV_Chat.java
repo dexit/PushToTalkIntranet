@@ -23,7 +23,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 /**
- * Copyright (C) 2012 ÒÆ¶¯Ó¦ÓÃÑÐ·¢×é-ÉñÁÄ¶Ô¼Ó»ú °æ±¾£º ÈÕÆÚ£º ÃèÊö£º²âÊÔ ²é¿´ÁÄÌì¼ÇÂ¼ ²Ù×÷£ºÌí¼Ó ²Ù×÷ÈË£ºÒÆ¶¯Ó¦ÓÃÑÐ·¢×é-gxc
  */
 public class Adapter_LV_Chat extends BaseAdapter {
 	private Context con;
