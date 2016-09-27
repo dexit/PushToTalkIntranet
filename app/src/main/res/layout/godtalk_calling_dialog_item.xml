@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  自定义呼叫dialog-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	<ImageView android:id="@+id/imgCalling"
+	    android:layout_width="200dip"
+	    android:layout_height="240dip"
+	    android:background="@drawable/calling_speaker"/>
+    <LinearLayout
+	  android:orientation="horizontal"
+	  android:layout_width="fill_parent"
+	  android:layout_height="wrap_content">
+        <Button android:id="@+id/btnCallingOk"
+            android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="0.5"
+			android:textColor="@color/black"
+			android:text="按住说话"/>
+    </LinearLayout>
+</LinearLayout>

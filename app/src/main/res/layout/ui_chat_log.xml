@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!-- 聊天记录 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:background="#FFFFFF"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+	<TextView android:layout_width="fill_parent" android:layout_height="50dip"
+	android:text="聊天记录" android:gravity="center"
+	android:background="#445566" android:textSize="20sp"/>
+		<ListView android:id="@+id/chat_log_list_CLAct" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+		android:background="#FFFFFFFF" android:cacheColorHint="@null"
+		 android:listSelector="@android:color/transparent"
+		android:stackFromBottom="true" />
+	</LinearLayout>

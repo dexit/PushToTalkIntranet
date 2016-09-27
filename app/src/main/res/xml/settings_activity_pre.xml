@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	android:key="setting_demo_preference">
+	<PreferenceCategory xmlns:android="http://schemas.android.com/apk/res/android"
+		android:key="bell_settings" android:title="@string/bell_settings">
+		<ListPreference android:key="bell_list_preference"
+			android:title="@string/bell_title_list_preference" android:summary="@string/bell_summary_list_preference"
+			android:entries="@array/bell_entries_list_preference"
+			android:entryValues="@array/bell_entryvalues_list_preference"
+			android:dialogTitle="@string/bell_title_list_preference" />
+	</PreferenceCategory>
+	<PreferenceCategory android:key="net_settings"
+		android:title="@string/net_settings">
+		<Preference android:key="wifi_setting_preference"
+			android:summary="@string/wifi_summary_preference" android:title="@string/wifi_title_prefrence">
+		</Preference>
+	</PreferenceCategory>
+	<PreferenceCategory android:key="other_settings"
+		android:title="@string/other_settings">
+		<Preference android:key="received_file"
+			android:title="已收文件">
+		</Preference>
+		<Preference android:key="newer_guide_preference"
+			android:title="@string/newer_guide_preference">
+		</Preference>
+		<Preference android:key="about_setting_preference"
+			android:title="@string/about_title_preference">
+		</Preference>
+		<Preference android:key="sinobpo_display_preference"
+			android:title="@string/sinobpo_display_preference">
+		</Preference>
+	</PreferenceCategory>
+</PreferenceScreen>

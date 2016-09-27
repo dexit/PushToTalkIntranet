@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 聊天界面对应的XML文件 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/person_chart_layout" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/chart_msg_bg"
+	android:orientation="vertical">
+	<!-- 顶部的title -->
+	<RelativeLayout 
+		android:layout_width="fill_parent" android:layout_height="40dip"
+		 android:background="@drawable/bg">
+		<Button android:id="@+id/btnBack" android:layout_width="wrap_content"
+			android:layout_height="35dip" android:text="返回" android:textColor="@color/white"
+			android:background="@drawable/btn_back" android:layout_centerVertical="true"/>
+		<TextView android:id="@+id/my_nickename"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_centerInParent="true" android:textSize="18dip"
+			android:textColor="@color/white" />
+				<Button android:id="@+id/btn_chatLog" android:layout_width="wrap_content"
+			android:layout_height="35dip" android:text="聊天记录" android:textColor="@color/white"
+			android:background="@drawable/btn_back" android:layout_centerVertical="true" android:layout_alignParentRight="true"
+			android:layout_marginRight="15dip"/>
+	</RelativeLayout>
+	
+	<FrameLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:orientation="vertical"
+		android:layout_weight="1">
+		<ListView android:id="@+id/chat_list_CMAct" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:layout_weight="1.0"
+		android:background="#FFFFFFFF" android:cacheColorHint="@null"
+		android:divider="@null" android:listSelector="@android:color/transparent"
+		android:stackFromBottom="true" />
+		<!-- 点击“按住留言”按钮后在屏幕中间显示的提示窗口，提示用户开始说话 -->
+		<include layout="@layout/chart_msg_speaker_item" />
+	</FrameLayout>
+	
+	<!-- 底部按钮 (文件文件)-->
+	<FrameLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<include layout="@layout/chart_msg_type_chooser_item" />
+	</FrameLayout>
+	
+	<LinearLayout android:gravity="center"
+		android:layout_width="fill_parent" android:layout_height="50dip"
+		android:orientation="horizontal" android:background="@drawable/bg"
+		android:padding="2dip">
+		<ImageButton android:id="@+id/chart_msg_file"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:tag="0" android:background="@drawable/btn_talk_bg" />
+		<ImageButton android:id="@+id/btnChartMore"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:background="@drawable/btn_chart_more" />
+		<LinearLayout android:id="@+id/linLaySendMsg"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:orientation="horizontal" android:visibility="gone">
+			<EditText android:id="@+id/chart_msg" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" 
+				android:scrollbars="vertical" android:layout_weight="1" />
+			<Button android:id="@+id/chart_msg_send" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="发送" 
+				android:layout_gravity="center_vertical"/>
+		</LinearLayout>
+		<Button android:id="@+id/btnRecordVoice" android:textColor="#ffffffff"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:maxHeight="80.0dip" android:minHeight="41.0dip" android:text="按住留言"
+			android:shadowColor="#ff000000" android:shadowDx="0.0"
+			android:shadowDy="0.0" android:shadowRadius="2.0"
+			android:layout_weight="1.0" android:layout_gravity="center_vertical"/>
+	</LinearLayout>
+</LinearLayout>

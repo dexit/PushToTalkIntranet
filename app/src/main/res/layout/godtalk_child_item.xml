@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:gravity="center_vertical"
+  android:layout_width="fill_parent"
+  android:background="@drawable/list_item_selector_bg"
+  android:id="@+id/linLayPersonItem"
+  android:layout_height="wrap_content">
+    <FrameLayout android:layout_width="wrap_content" 
+      android:layout_height="wrap_content">
+      <ImageView android:layout_width="40dip"
+    	android:layout_height="40dip"
+    	android:id="@+id/txtPerHeadIcon"/>
+    	<TextView android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:paddingLeft="35dip"
+	    	android:textColor="@color/red"
+	    	android:id="@+id/txtPerMsgCount"/>
+    </FrameLayout>
+    <LinearLayout android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical"
+    	android:layout_marginLeft="5dip">
+    	<TextView android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:gravity="center"
+    		android:textColor="@color/white"
+	    	android:id="@+id/txtPerNickName"/>
+    	<TextView android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:textColor="@color/white"
+	    	android:id="@+id/txtPerIpAddre"/>
+    	<!--<TextView android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:id="@+id/txtAudioMsgCount"/>
+    --></LinearLayout>
+    <LinearLayout android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical">
+    	<TextView android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:id="@+id/txtPerLoginTime"/>
+   	</LinearLayout>
+   	<RelativeLayout android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content">
+   	    	<Button android:id="@+id/imgStartCalling" 
+				android:layout_width="75dip"
+				android:layout_height="45dip"
+				android:textColor="@color/white"
+				android:layout_gravity="center_vertical"
+				android:layout_alignParentRight="true"
+				android:layout_marginRight="10dip"
+				android:drawableLeft="@drawable/calling"
+				android:background="@drawable/btn_calling"
+				android:text="@string/calling"/>
+   	</RelativeLayout>
+</LinearLayout>

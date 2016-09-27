@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="groupIndicatorLabeles">
+        <item>当前局域网在线</item>
+    </string-array>
+    <string-array name="bell_entries_list_preference">
+		<item>铃声1</item>
+		<item>铃声2</item>
+		<item>铃声3</item>
+		<item>铃声4</item>
+		<item>关闭</item>
+	</string-array>
+	<string-array name="bell_entryvalues_list_preference">
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+	</string-array>
+</resources>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>About Us</title>
+    <link type="text/css" rel="stylesheet" href="base.css" />
+    <link type="text/css" rel="stylesheet" href="content_default.css" />
+    <link type="text/css" rel="stylesheet" href="basemod.css" />
+
+    <script type="text/javascript" src="tMobile.js"></script>
+
+    <script type="text/javascript" src="config.js"></script>
+
+    <style type="text/css">
+        .main
+        {
+            padding: 20px 10px;
+        }
+        .about, .home, .mobile, .feedback, .cur_version
+        {
+            margin-bottom: 10px;
+            background-image: -webkit-gradient(linear, 0 100%, 0 0, color-stop(0, #dcdcdc), color-stop(1, #f0f0f0));
+            padding: 10px;
+            -webkit-border-radius: 8px;
+            border: 2px solid #fff;
+            color: #445668;
+            line-height: 20px;
+            font-size: 14px;
+        }
+        h4
+        {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        a
+        {
+            color: #2fdec3;
+            text-decoration: none;
+        }
+        .style1
+        {
+            color: Red;
+            font-weight: bold;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function feedback() {
+            $.share("hello");
+        }
+
+        document.addEventListener('DOMContentLoaded', loadAbout, false);
+
+        function loadAbout() {
+            $(".scroller").scroller();
+        }
+    </script>
+
+</head>
+<body>
+    <div class="viewport">
+        <div class="scroll_wrapper">
+            <div class="scroller main">
+                <div class="about">
+                    <h4 style="text-align: center;">
+                        <img src="dlsm.png" width="130px"><br />
+                        东蓝数码神聊Beta版</h4>
+                </div>
+                <div class="cur_version">
+                    <h4>
+                        移动应用研发组（数字城市事业部）</h4>
+                    <p class="style1">
+                        成立背景</p>
+                    <p class="version">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;随着移动互联网快速发展，为拓展了新业务，为了实现“快速开发”，为项目服务，为此，数字城市事业部成立了“移动应用研发组”。</p>
+                    <p class="style1">
+                        研发组职能</p>
+                    <p class="version">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1、承担事业部移动应用开发技术方案的论证和编写<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2、承担移动应用开发框架、运行框架的搭建；<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3、承担GIS公共服务平台在移动端的集成应用；<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4、承担移动应用开发培训</p>
+                </div>
+                <div class="mobile">
+                    <h4>
+                        官方联系方式</h4>
+                    <a href="" style="color:Blue;">Mail: MobileFramework@163.com</a></div>
+                <div class="feedback">
+                    <h4>
+                        意见反馈</h4>
+                    <p onclick="feedback()">
+                        MobileFramework@163.com
+                        <p>
+                </div>
+                <div class="cur_version">
+                    <h4>
+                        当前版本</h4>
+                    <p class="version">
+                        1.0.0 Beta版</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

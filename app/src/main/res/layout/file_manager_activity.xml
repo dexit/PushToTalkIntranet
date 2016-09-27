@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<!-- 选择发送文件和选择文件保存路径用的都是这个xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:background="@drawable/file_bg"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:textColor="@android:color/white"
+		android:textSize="20dp" android:gravity="center" android:id="@+id/file_select_title" />
+	<!-- 显示当前路径 -->
+	<TextView android:id="@+id/mPath" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:textSize="16dp"
+		android:textColor="@android:color/white" />
+
+	<!-- 上边按钮 -->
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="horizontal">
+		<Button android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_weight="1"
+			android:text="根目录" android:drawableLeft="@drawable/folder_root"
+			android:id="@+id/return_root_path" />
+		<Button android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_weight="1"
+			android:text="上一级" android:drawableLeft="@drawable/folder_up"
+			android:id="@+id/return_parent_path" />
+	</LinearLayout>
+
+	<RelativeLayout android:id="@+id/linLaySort" android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+		<RadioGroup android:id="@+id/radio_group_FMAct"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal">
+			<RadioButton android:id="@+id/btnSendImage"
+				android:layout_width="fill_parent" android:layout_height="55dip"
+				android:layout_weight="1" android:text="图片" android:textColor="@color/white"
+				android:background="@drawable/btn_tab_bg" android:drawableTop="@drawable/file_picture_type"
+				android:button="@null" android:textSize="13sp" android:gravity="center_horizontal" />
+			<RadioButton android:id="@+id/btnSendAudio"
+				android:layout_width="fill_parent" android:layout_height="55dip"
+				android:layout_weight="1" android:text="音频" android:textColor="@color/white"
+				android:background="@drawable/btn_tab_bg" android:drawableTop="@drawable/file_audio_type"
+				android:button="@null" android:textSize="13sp" android:gravity="center_horizontal" />
+			<RadioButton android:id="@+id/btnSendMedia"
+				android:layout_width="fill_parent" android:layout_height="55dip"
+				android:layout_weight="1" android:text="视频" android:textColor="@color/white"
+				android:background="@drawable/btn_tab_bg" android:drawableTop="@drawable/file_media_type"
+				android:button="@null" android:textSize="13sp" android:gravity="center_horizontal" />
+			<RadioButton android:id="@+id/btnSendApk"
+				android:layout_width="fill_parent" android:layout_height="55dip"
+				android:layout_weight="1" android:text="应用" android:textColor="@color/white"
+				android:background="@drawable/btn_tab_bg" android:drawableTop="@drawable/file_apk_type"
+				android:button="@null" android:textSize="13sp" android:gravity="center_horizontal" />
+			<RadioButton android:id="@+id/radiobtn_received"
+				android:layout_width="fill_parent" android:layout_height="55dip"
+				android:layout_weight="1" android:text="已收文件" android:textColor="@color/white"
+				android:background="@drawable/btn_tab_bg" android:drawableTop="@drawable/file_apk_type"
+				android:button="@null" android:textSize="13sp" android:gravity="center_horizontal" />
+		</RadioGroup>
+		<Button android:id="@+id/btn_overlay_FMAct" android:layout_width="fill_parent" android:layout_height="60dip"
+		android:background="#FFFFFF" />
+	</RelativeLayout>
+
+
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:layout_weight="1">
+		<!-- 文件列表 -->
+		<ListView android:id="@android:id/list" android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:background="@drawable/file_listview_bg"
+			android:cacheColorHint="#00000000" />
+		<ProgressBar android:id="@+id/pb_FMAct"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_centerInParent="true" style="?android:attr/progressBarStyleLarge"
+			android:visibility="gone" />
+	</RelativeLayout>
+
+	<!-- 底部按钮 -->
+	<LinearLayout android:gravity="center"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:orientation="vertical">
+		<LinearLayout android:gravity="center"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:orientation="horizontal">
+			<Button android:id="@+id/btnShake" android:layout_width="fill_parent"
+				android:layout_height="50dip" android:layout_weight="1"
+				android:drawableLeft="@drawable/shake" android:background="@drawable/shake_bg"
+				android:text="摇一摇" android:textColor="@color/white" />
+			<Button android:id="@+id/btnConfirm" android:layout_width="fill_parent"
+				android:layout_height="50dip" android:layout_weight="1"
+				android:background="@drawable/shake_bg" android:text="确定"
+				android:textColor="@color/white">
+			</Button>
+		</LinearLayout>
+	</LinearLayout>
+</LinearLayout>
