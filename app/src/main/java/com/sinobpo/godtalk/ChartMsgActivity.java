@@ -127,11 +127,11 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 	private ArrayList<ChatContent> list_data = new ArrayList<ChatContent>();
 
 	private ChartContentDaoImpl chartDaoImpl;
-    /**聊天记录*/
+	/**聊天记录*/
 	private Button btn_chatLog;
 	private String chatId = "";
 	private String maxChatId = "";
-	
+
 	/**
 	 * MainService服务与当前Activity的绑定连接器
 	 */
@@ -182,7 +182,7 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 
 		regBroadcastRecv();
 	}
-	
+
 
 	/**
 	 * 控件初始化
@@ -232,7 +232,7 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View view, int arg2,
-					long arg3) {
+									long arg3) {
 				// TODO Auto-generated method stub
 				TextView tv_filePath = (TextView) view
 						.findViewById(R.id.send_msg_filePath);
@@ -285,33 +285,31 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 				}
 			}
 		});
-		
+
 		new InitChatContent().execute("");
 	}
 
 	/**
 	 * 初始化聊天记录
-	 * 
+	 *
 	 * @author Buddy
-	 * 
+	 *
 	 */
 	private class InitChatContent extends AsyncTask<String, String, String> {
 
 		@Override
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
-<<<<<<< .mine
 			Date date1=new Date();
 			System.out.println("start "+date1.getTime());
-			
+
 			list_data=new ArrayList<ChatContent>();
 			list_data=chartDaoImpl.getData(me.ipAddress, person.ipAddress);
-=======
 			System.out.println("person.personId=="+person.personId);
 			List<Message> list_msgs = mService.getMessagesById(person.personId);
 			System.out.println("list_msgs.size=="+list_msgs.size());
 			Message msg = list_msgs.remove(0);
-			
+
 			chatId = chartDaoImpl.getChatID(me.ipAddress, person.ipAddress);
 			System.out.println("InitChatContent   "+me.ipAddress + "    " + person.ipAddress
 					+ "    chatId=" + chatId);
@@ -332,8 +330,8 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 					chartDaoImpl.saveToCallLog(chatContent);
 					System.out.println("save over!  ");
 				}
-			
-				
+
+
 				list_data = chartDaoImpl.getDataByChatId(maxChatId);
 			} else {// 如果跟这个人交互过，就直接使用这个chatId
 				System.out.println("InitChatContent   "+"initData-- chatId != null    chatId="
@@ -350,10 +348,9 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 					chartDaoImpl.saveToCallLog(chatContent);
 					System.out.println("save over!  ");
 				}
-				
+
 				list_data = chartDaoImpl.getDataByChatId(chatId);
 			}
->>>>>>> .r1743
 			return "over";
 		}
 
@@ -361,12 +358,9 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-<<<<<<< .mine
 			Date date2=new Date();
 			System.out.println("start "+date2.getTime());
-=======
 			System.out.println("bbbbbbbbbbbb :  "+list_data.size());
->>>>>>> .r1743
 			adapter = new Adapter_LV_Chat(ChartMsgActivity.this, list_data,
 					lv_chat);
 			lv_chat.setAdapter(adapter);
@@ -382,21 +376,21 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
 			switch (event.getAction()) {
-			case MotionEvent.ACTION_DOWN:
-				System.out.println("start talk......");
-				linLaySpeaker.setVisibility(View.VISIBLE);
-				mService.startTalk(person.personId);
-				break;
-			case MotionEvent.ACTION_UP:
-				System.out.println("stop talk......");
-				linLaySpeaker.setVisibility(View.GONE);
-				mService.stopTalk(person.personId);
-				break;
+				case MotionEvent.ACTION_DOWN:
+					System.out.println("start talk......");
+					linLaySpeaker.setVisibility(View.VISIBLE);
+					mService.startTalk(person.personId);
+					break;
+				case MotionEvent.ACTION_UP:
+					System.out.println("stop talk......");
+					linLaySpeaker.setVisibility(View.GONE);
+					mService.stopTalk(person.personId);
+					break;
 			}
 			return false;
 		}
 	};
-	
+
 	/**
 	 * 通过userID从服务器上获取数据
 	 * @param personId
@@ -412,97 +406,94 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View vi) {
 		switch (vi.getId()) {
-		case R.id.btnBack:// 返回
-			finish();
-			break;
-		case R.id.chart_msg_send:// 发送
-			String msg = chartMsg.getText().toString();
-			if (null == msg || msg.length() <= 0) {
-				Toast.makeText(this, getString(R.string.content_is_empty),
-						Toast.LENGTH_SHORT).show();
-				return;
-			}
-			chartMsg.setText("");
+			case R.id.btnBack:// 返回
+				finish();
+				break;
+			case R.id.chart_msg_send:// 发送
+				String msg = chartMsg.getText().toString();
+				if (null == msg || msg.length() <= 0) {
+					Toast.makeText(this, getString(R.string.content_is_empty),
+							Toast.LENGTH_SHORT).show();
+					return;
+				}
+				chartMsg.setText("");
 
-			mService.sendMsg(person.personId, msg);
-			// 代码混乱不规范，效率叫低，直接保存数据会导致查询死机，所以起异步来保存数据
-			new saveToDatabase().execute(msg);
-			break;
-		case R.id.chart_msg_file:// 文字、语音模式切换按钮
-			if (chartMsgFile.getTag().equals("0")) {
-				chartMsgFile.setBackgroundResource(R.drawable.btn_send_msg);
-				linLaySendMsg.setVisibility(View.VISIBLE);
-				fraLayChartMore.setVisibility(View.GONE);
-				chartMsgFile.setTag("1");
-			} else if (chartMsgFile.getTag().equals("1")) {
-				chartMsgFile.setBackgroundResource(R.drawable.btn_talk_bg);
-				linLaySendMsg.setVisibility(View.GONE);
-				fraLayChartMore.setVisibility(View.GONE);
-				chartMsgFile.setTag("0");
-			}
-			break;
-		case R.id.btnChartMore:// 显示“fraLayChartMore”（选择发送文件布局：图片，音频等）布局按钮
-			if (fraLayChartMore.getVisibility() == View.GONE)
-				fraLayChartMore.setVisibility(View.VISIBLE);
-			else if (fraLayChartMore.getVisibility() == View.VISIBLE)
-				fraLayChartMore.setVisibility(View.GONE);
-			break;
-		case R.id.btnChartSendImage:// 选择发送文件类型中的“图片”
-			Intent intent = new Intent(this, FileManagerActivity.class);
-			intent.putExtra("selectType", Constant.SELECT_FILES);
-			intent.putExtra("type", "image");
-			startActivityForResult(intent, Constant.FILE_RESULT_CODE);
-			break;
-		case R.id.btnChartSendAudio:// 选择发送文件类型中的“音频”
-			intent = new Intent(this, FileManagerActivity.class);
-			intent.putExtra("selectType", Constant.SELECT_FILES);
-			intent.putExtra("type", "audio");
-			startActivityForResult(intent, Constant.FILE_RESULT_CODE);
-			break;
-		case R.id.btnChartSendMedia:// 选择发送文件类型中的“视频”
-			intent = new Intent(this, FileManagerActivity.class);
-			intent.putExtra("selectType", Constant.SELECT_FILES);
-			intent.putExtra("type", "media");
-			startActivityForResult(intent, Constant.FILE_RESULT_CODE);
-			break;
-		case R.id.btnChartSendApk:// 选择发送文件类型中的“应用”
-			intent = new Intent(this, FileManagerActivity.class);
-			intent.putExtra("selectType", Constant.SELECT_FILES);
-			intent.putExtra("type", "apk");
-			startActivityForResult(intent, Constant.FILE_RESULT_CODE);
-			break;
-		case R.id.btnChartReceiveFile:// 选择发送文件类型中的“已接受文件”
-			intent = new Intent(this, FileManagerActivity.class);
-			intent.putExtra("selectType", Constant.SELECT_FILES);
-			intent.putExtra("type", "received");
-			startActivityForResult(intent, Constant.FILE_RESULT_CODE);
-			// intent = new Intent(this, ReceiveFileBrowserActivity.class);
-			// startActivity(intent);
-			break;
-		case R.id.btn_chatLog:
-<<<<<<< .mine
-			intent = new Intent(this, ChatLogAct.class);
-			intent.putExtra("meIP",me.ipAddress);
-			intent.putExtra("personIP", person.ipAddress);
-			startActivity(intent);
-=======
-			chatId = chartDaoImpl.getChatID(me.ipAddress, person.ipAddress);
-			if(chatId.equals("")){
-				chatId="";
-			}
+				mService.sendMsg(person.personId, msg);
+				// 代码混乱不规范，效率叫低，直接保存数据会导致查询死机，所以起异步来保存数据
+				new saveToDatabase().execute(msg);
+				break;
+			case R.id.chart_msg_file:// 文字、语音模式切换按钮
+				if (chartMsgFile.getTag().equals("0")) {
+					chartMsgFile.setBackgroundResource(R.drawable.btn_send_msg);
+					linLaySendMsg.setVisibility(View.VISIBLE);
+					fraLayChartMore.setVisibility(View.GONE);
+					chartMsgFile.setTag("1");
+				} else if (chartMsgFile.getTag().equals("1")) {
+					chartMsgFile.setBackgroundResource(R.drawable.btn_talk_bg);
+					linLaySendMsg.setVisibility(View.GONE);
+					fraLayChartMore.setVisibility(View.GONE);
+					chartMsgFile.setTag("0");
+				}
+				break;
+			case R.id.btnChartMore:// 显示“fraLayChartMore”（选择发送文件布局：图片，音频等）布局按钮
+				if (fraLayChartMore.getVisibility() == View.GONE)
+					fraLayChartMore.setVisibility(View.VISIBLE);
+				else if (fraLayChartMore.getVisibility() == View.VISIBLE)
+					fraLayChartMore.setVisibility(View.GONE);
+				break;
+			case R.id.btnChartSendImage:// 选择发送文件类型中的“图片”
+				Intent intent = new Intent(this, FileManagerActivity.class);
+				intent.putExtra("selectType", Constant.SELECT_FILES);
+				intent.putExtra("type", "image");
+				startActivityForResult(intent, Constant.FILE_RESULT_CODE);
+				break;
+			case R.id.btnChartSendAudio:// 选择发送文件类型中的“音频”
+				intent = new Intent(this, FileManagerActivity.class);
+				intent.putExtra("selectType", Constant.SELECT_FILES);
+				intent.putExtra("type", "audio");
+				startActivityForResult(intent, Constant.FILE_RESULT_CODE);
+				break;
+			case R.id.btnChartSendMedia:// 选择发送文件类型中的“视频”
+				intent = new Intent(this, FileManagerActivity.class);
+				intent.putExtra("selectType", Constant.SELECT_FILES);
+				intent.putExtra("type", "media");
+				startActivityForResult(intent, Constant.FILE_RESULT_CODE);
+				break;
+			case R.id.btnChartSendApk:// 选择发送文件类型中的“应用”
+				intent = new Intent(this, FileManagerActivity.class);
+				intent.putExtra("selectType", Constant.SELECT_FILES);
+				intent.putExtra("type", "apk");
+				startActivityForResult(intent, Constant.FILE_RESULT_CODE);
+				break;
+			case R.id.btnChartReceiveFile:// 选择发送文件类型中的“已接受文件”
+				intent = new Intent(this, FileManagerActivity.class);
+				intent.putExtra("selectType", Constant.SELECT_FILES);
+				intent.putExtra("type", "received");
+				startActivityForResult(intent, Constant.FILE_RESULT_CODE);
+				// intent = new Intent(this, ReceiveFileBrowserActivity.class);
+				// startActivity(intent);
+				break;
+			case R.id.btn_chatLog:
+				intent = new Intent(this, ChatLogAct.class);
+				intent.putExtra("meIP",me.ipAddress);
+				intent.putExtra("personIP", person.ipAddress);
+				startActivity(intent);
+				chatId = chartDaoImpl.getChatID(me.ipAddress, person.ipAddress);
+				if(chatId.equals("")){
+					chatId="";
+				}
 				intent = new Intent(this, ChatLogAct.class);
 				intent.putExtra("chatID", chatId);
 				startActivity(intent);
->>>>>>> .r1743
-			break;
+				break;
 		}
 	}
 
 	/**
 	 * 保存数据
-	 * 
+	 *
 	 * @author Buddy
-	 * 
+	 *
 	 */
 	private class saveToDatabase extends AsyncTask<String, String, String> {
 
@@ -532,48 +523,47 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 
 	/**
 	 * 保存数据
-	 * 
+	 *
 	 * @author Buddy
-	 * 
+	 *
 	 */
 	private class saveReceiveDatabase extends AsyncTask<String, String, String> {
 
 		@Override
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
-<<<<<<< .mine
 			ChatContent chatContent = new ChatContent(person.ipAddress,
 					me.ipAddress, params[1], params[0], "",
 					person.personHeadIconId, person.personNickeName,
 					"1", "");
 			chartDaoImpl.saveToCallLog(chatContent);
 			list_data.add(chatContent);
-=======
-			chatId = chartDaoImpl.getChatID(me.ipAddress, person.ipAddress);
-			if (me.ipAddress.equals("")) {
-				System.out.println("MyIp==null");
-			} else {
-				if (chatId.equals("")) {// 如果charID等于，说明没有跟该人有过信息交互
-					System.out.println("saveReceiveDatabase  charId == null");
-					maxChatId = chartDaoImpl.getMaxChatID();
-					System.out.println("maxChatId=" + maxChatId);
-					ChatContent chatContent = new ChatContent(person.ipAddress,
-							me.ipAddress, params[1], params[0], chatId,
-							person.personHeadIconId, person.personNickeName,
-							"1", "");
-					chartDaoImpl.saveToCallLog(chatContent);
-					list_data.add(chatContent);
-				} else {
-					System.out.println("charId != null");
-					ChatContent chatContent = new ChatContent(person.ipAddress,
-							me.ipAddress, params[1], params[0], chatId,
-							person.personHeadIconId, person.personNickeName,
-							"1", "");
-					chartDaoImpl.saveToCallLog(chatContent);
-					list_data.add(chatContent);
-				}
-			}
->>>>>>> .r1743
+
+//			chatId = chartDaoImpl.getChatID(me.ipAddress, person.ipAddress);
+//			if (me.ipAddress.equals("")) {
+//				System.out.println("MyIp==null");
+//			} else {
+//				if (chatId.equals("")) {// 如果charID等于，说明没有跟该人有过信息交互
+//					System.out.println("saveReceiveDatabase  charId == null");
+//					maxChatId = chartDaoImpl.getMaxChatID();
+//					System.out.println("maxChatId=" + maxChatId);
+//					ChatContent chatContent = new ChatContent(person.ipAddress,
+//							me.ipAddress, params[1], params[0], chatId,
+//							person.personHeadIconId, person.personNickeName,
+//							"1", "");
+//					chartDaoImpl.saveToCallLog(chatContent);
+//					list_data.add(chatContent);
+//				} else {
+//					System.out.println("charId != null");
+//					ChatContent chatContent = new ChatContent(person.ipAddress,
+//							me.ipAddress, params[1], params[0], chatId,
+//							person.personHeadIconId, person.personNickeName,
+//							"1", "");
+//					chartDaoImpl.saveToCallLog(chatContent);
+//					list_data.add(chatContent);
+//				}
+//			}
+
 			System.out.println("receive over!!!");
 			return null;
 		}
@@ -593,7 +583,7 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 
 	/**
 	 * 显示收到的语音信息
-	 * 
+	 *
 	 * @param userId
 	 */
 	private void showAudioMsg(int userId) {
@@ -605,7 +595,7 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 				if (tempFile.length() > 0) {
 					String content = "语音"
 							+ msg.msg.substring(msg.msg.length() - 6, msg.msg
-									.length());
+							.length());
 					chatId = chartDaoImpl.getChatID(me.ipAddress,
 							person.ipAddress);
 					if (chatId.equals("")) {// 如果charID等于，说明没有跟该人有过信息交互
@@ -636,9 +626,9 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 
 	/**
 	 * 音频播放类
-	 * 
+	 *
 	 * @author Buddy
-	 * 
+	 *
 	 */
 	public class AudioPlay implements OnClickListener {
 		String pcmPath;
@@ -790,37 +780,37 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 			// TODO Auto-generated method stub
 			super.handleMessage(msg);
 			switch (msg.what) {
-			case 1:
-				if (Constant.sendFileIsOver == false) {
-					sendEmptyMessageDelayed(1, 300);
-				} else {
-					fileListDialog.dismiss();
-				}
-				break;
-			case 2:
-				if (Constant.sendFileIsOver == false) {
-					sendEmptyMessageDelayed(2, 300);
-				} else {
-					if (receivedFileNames.size() == 1) {
-						btn_receiver.setText("打开");
-						btn_receiver.setEnabled(true);
-						btn_receiver.setOnClickListener(new OnClickListener() {
-
-							@Override
-							public void onClick(View v) {
-								// TODO Auto-generated method stub
-								openFile(filePath + "/"
-										+ receivedFileNames.get(0).fileName);
-							}
-						});
+				case 1:
+					if (Constant.sendFileIsOver == false) {
+						sendEmptyMessageDelayed(1, 300);
 					} else {
 						fileListDialog.dismiss();
-						Toast.makeText(ChartMsgActivity.this,
-								"可以通过“设置”里的“已收文件”进行查看", Toast.LENGTH_SHORT)
-								.show();
 					}
-				}
-				break;
+					break;
+				case 2:
+					if (Constant.sendFileIsOver == false) {
+						sendEmptyMessageDelayed(2, 300);
+					} else {
+						if (receivedFileNames.size() == 1) {
+							btn_receiver.setText("打开");
+							btn_receiver.setEnabled(true);
+							btn_receiver.setOnClickListener(new OnClickListener() {
+
+								@Override
+								public void onClick(View v) {
+									// TODO Auto-generated method stub
+									openFile(filePath + "/"
+											+ receivedFileNames.get(0).fileName);
+								}
+							});
+						} else {
+							fileListDialog.dismiss();
+							Toast.makeText(ChartMsgActivity.this,
+									"可以通过“设置”里的“已收文件”进行查看", Toast.LENGTH_SHORT)
+									.show();
+						}
+					}
+					break;
 			}
 
 		}
@@ -872,7 +862,7 @@ public class ChartMsgActivity extends Activity implements OnClickListener {
 //				smtView.setText(new Date().toLocaleString());
 //				nView.setText(me.personNickeName);
 				// chartMsgPanel.addView(view);
-				
+
 				new saveToDatabase().execute("语音已发出!");
 			} else if (intent.getAction().equals(Constant.recorderFailAction)) {// 录音发送错误
 				linLaySpeaker.setVisibility(View.GONE);
